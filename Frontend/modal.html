@@ -1,0 +1,60 @@
+<script>
+
+function createConfirmationModal(message, confirmCallback) {
+  var confirmModal = document.createElement('div');
+      confirmModal.classList.add('modal-dialog', 'rounded-3', 'shadow');
+      confirmModal.setAttribute('role', 'document');
+
+  var modalContent = document.createElement('div');
+      modalContent.classList.add('modal-content');
+
+  var modalBody = document.createElement('div');
+      modalBody.classList.add('modal-body', 'p-4', 'text-center');
+
+  var title = document.createElement('h5');
+      title.classList.add('mb-0');
+      title.textContent = message;
+
+  modalBody.appendChild(title);
+
+  var modalFooter = document.createElement('div');
+      modalFooter.classList.add('modal-footer', 'flex-nowrap', 'p-0');
+
+  var confirmButton = document.createElement('button');
+      confirmButton.setAttribute('type', 'button');
+      confirmButton.classList.add('btn', 'btn-lg', 'btn-link', 'fs-6', 'text-decoration-none', 'col-6', 'py-3', 'm-0', 'rounded-0', 'border-end');
+      confirmButton.innerHTML = '<strong>Yes</strong>';
+
+  var cancelButton = document.createElement('button');
+      cancelButton.setAttribute('type', 'button');
+      cancelButton.classList.add('btn', 'btn-lg', 'btn-link', 'fs-6', 'text-decoration-none', 'col-6', 'py-3', 'm-0', 'rounded-0', 'text-danger');
+      cancelButton.setAttribute('data-bs-dismiss', 'modal');
+      cancelButton.textContent = 'No';
+
+  modalFooter.appendChild(confirmButton);
+  modalFooter.appendChild(cancelButton);
+
+  modalContent.appendChild(modalBody);
+  modalContent.appendChild(modalFooter);
+
+  confirmModal.appendChild(modalContent);
+
+  // Create and show the Modal
+  var confirmModalContainer = document.createElement('div');
+      confirmModalContainer.classList.add('modal', 'fade');
+      confirmModalContainer.appendChild(confirmModal);
+
+  document.body.appendChild(confirmModalContainer);
+
+  // Call the Modal
+  var myModal = new bootstrap.Modal(confirmModalContainer);
+      myModal.show();
+
+  confirmButton.addEventListener('click', function() {
+    confirmCallback();
+    myModal.hide();
+  });
+  
+}
+
+</script>
